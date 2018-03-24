@@ -410,17 +410,12 @@ with a random selection from the appropriate list."
         ((= (aref (car a) 0) ?*)
          (horoscope--getlist (substring (car a) 1) (cdr a) prefix))
         ((= (aref (car a) 0) ?!)
-         (horoscope--capitalize
+         (capitalize
           (horoscope--getlist (substring (car a) 1) (cdr a) prefix)))
         (t
          (concat (car a)
                  (if (cdr a) " " "")
                  (horoscope--iterate-list (cdr a) prefix)))))
-
-(defun horoscope--capitalize (a)
-  (let ((new (copy-sequence a)))
-    (aset new 0 (upcase (aref new 0)))
-    new))
 
 (provide 'horoscope)
 
