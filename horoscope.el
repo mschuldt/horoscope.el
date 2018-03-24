@@ -373,15 +373,16 @@ isnert the resulting horoscope into the current buffer."
            (with-output-to-temp-buffer temp-buffer-name
              (princ string))))))
 
-;; Return a random member of list A.
 (defun horoscope-random-member (a)
+  "Return a random member of list A."
   (and a
        (listp a)
        (nth (mod (random) (length a)) a)))
 
-;; Process entries from list LISTNAME and from RESTOFLIST, handling periods
-;; and commas at the end of LISTNAME as needed.
+
 (defun horoscope-getlist (listname restoflist prefix)
+  "Process entries from list LISTNAME and from RESTOFLIST, handling periods
+and commas at the end of LISTNAME as needed."
   (let* ((lastchar (aref listname (1- (length listname))))
          (punct-char-p (memq lastchar '(?. ?,)))
          (period-p (= lastchar ?.))
@@ -399,9 +400,10 @@ isnert the resulting horoscope into the current buffer."
             (if restoflist " " "")
             (horoscope-iterate-list restoflist prefix))))
 
-;; Iterate over list A, replacing all strings beginning with a '*' or '!'
-;; with a random selection from the appropriate list.
+
 (defun horoscope-iterate-list (a prefix)
+  "Iterate over list A, replacing all strings beginning with a '*' or '!'
+with a random selection from the appropriate list."
   (cond ((null a) a)
         ((= (aref (car a) 0) ?*)
          (horoscope-getlist (substring (car a) 1) (cdr a) prefix))
