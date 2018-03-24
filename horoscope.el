@@ -349,6 +349,10 @@ isnert the resulting horoscope into the current buffer."
     s))
 
 (defun horoscope--display (string temp-buffer-name insertp)
+  "Display the horoscope in a temporary buffer.
+STRING is the horoscope
+TEMP-BUFFER-NAME name of buffer
+INSERTP when nil use JBW display hacks"
   (let ((temp-buffer-show-function temp-buffer-show-function)
         (temp-buffer-show-hook
          (function (lambda ()
@@ -379,7 +383,6 @@ isnert the resulting horoscope into the current buffer."
        (listp a)
        (nth (mod (random) (length a)) a)))
 
-
 (defun horoscope--getlist (listname restoflist prefix)
   "Process entries from list LISTNAME and from RESTOFLIST, handling periods
 and commas at the end of LISTNAME as needed."
@@ -399,7 +402,6 @@ and commas at the end of LISTNAME as needed."
                   (t ""))
             (if restoflist " " "")
             (horoscope--iterate-list restoflist prefix))))
-
 
 (defun horoscope--iterate-list (a prefix)
   "Iterate over list A, replacing all strings beginning with a '*' or '!'
