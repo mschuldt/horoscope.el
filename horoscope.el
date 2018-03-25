@@ -344,7 +344,7 @@ isnert the resulting horoscope into the current buffer."
   (interactive "P")
   (let ((s (horoscope--iterate-list
             (horoscope--random-member horoscope--paragraph) "horoscope--")))
-    (and (or insertp (interactive-p))
+    (and (or insertp (called-interactively-p 'interactive))
          (horoscope--display s "*Horoscope*" insertp))
     s))
 
