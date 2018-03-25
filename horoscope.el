@@ -1,4 +1,4 @@
-;;; horoscope.el --- generate horoscopes
+;;; horoscope.el --- generate horoscopes.      -*- lexical-binding: t -*-
 
 ;; Author: Bob Manson <manson@cygnus.com>
 ;; Maintainer: Noah Friedman <friedman@prep.ai.mit.edu>
