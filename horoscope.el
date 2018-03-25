@@ -370,8 +370,7 @@ INSERTP when nil use JBW display hacks"
            (and (eq temp-buffer-show-function 'show-temp-buffer)
                 (setq temp-buffer-show-function
                       (function (lambda (buf)
-                                  (save-excursion
-                                    (set-buffer buf)
+                                  (with-current-buffer buf
                                     (fill-paragraph nil))
                                   (show-temp-buffer buf)))))
            (with-output-to-temp-buffer temp-buffer-name
