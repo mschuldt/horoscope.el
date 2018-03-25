@@ -339,6 +339,7 @@
     ("make a stab at") ("meditate upon")
     ("look at deeply")))
 
+;;;###autoload
 (defun horoscope (&optional insertp)
   "Generate a random horoscope.
 If called interactively, display the resulting horoscope in a buffer.
