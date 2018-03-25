@@ -343,7 +343,7 @@
   "Generate a random horoscope.
 If called interactively, display the resulting horoscope in a buffer.
 If called with a prefix argument or the Lisp argument INSERTP non-nil,
-isnert the resulting horoscope into the current buffer."
+insert the resulting horoscope into the current buffer."
   (interactive "P")
   (let ((s (horoscope--iterate-list
             (horoscope--random-member horoscope--paragraph) "horoscope--")))
