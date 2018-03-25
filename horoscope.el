@@ -2,8 +2,11 @@
 
 ;; Author: Bob Manson <manson@cygnus.com>
 ;; Maintainer: Noah Friedman <friedman@prep.ai.mit.edu>
-;; Keywords: extensions
+;; Keywords: extensions games
 ;; Created: 1995-08-02
+;; Version: 2.0
+;; Package-Requires: ((emacs "24"))
+;; URL: https://github.com/mschuldt/horoscope.el
 
 ;; $Id: horoscope.el,v 1.2 1998/12/11 20:12:16 friedman Exp $
 
