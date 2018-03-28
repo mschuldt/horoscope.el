@@ -347,7 +347,7 @@ If called with a prefix argument or the Lisp argument INSERTP non-nil,
 insert the resulting horoscope into the current buffer."
   (interactive "P")
   (let ((s (horoscope--iterate-list
-            (horoscope--random-member horoscope--paragraph) "horoscope--")))
+            (horoscope--random-member horoscope--paragraph))))
     (and (or insertp (called-interactively-p 'interactive))
          (horoscope--display s "*Horoscope*" insertp))
     s))
@@ -389,42 +389,41 @@ INSERTP when nil use JBW display hacks"
        (listp a)
        (nth (mod (random) (length a)) a)))
 
-(defun horoscope--getlist (listname restoflist prefix)
+(defun horoscope--getlist (listname restoflist)
   "Process entries from list LISTNAME and from RESTOFLIST.
-Handle periods and commas at the end of LISTNAME as needed.
-PREFIX is the mode name used to prefix symbols."
+Handle periods and commas at the end of LISTNAME as needed."
   (let* ((lastchar (aref listname (1- (length listname))))
          (punct-char-p (memq lastchar '(?. ?,)))
          (period-p (= lastchar ?.))
          (suffix (if punct-char-p
                      (substring listname 0 -1)
-                   listname)))
+                   listname))
+         (prefix "horoscope--"))
     (concat (horoscope--iterate-list
              (horoscope--random-member
-              (symbol-value (intern (concat prefix suffix))))
-             prefix)
+              (symbol-value (intern (concat prefix suffix)))))
             (cond (period-p
                    (concat (char-to-string lastchar) " "))
                   (punct-char-p
                    (char-to-string lastchar))
                   (t ""))
             (if restoflist " " "")
-            (horoscope--iterate-list restoflist prefix))))
+            (horoscope--iterate-list restoflist))))
 
-(defun horoscope--iterate-list (a prefix)
+(defun horoscope--iterate-list (a)
   "Iterate over list A, preforming replacements.
 Strings beginning with a '*' or '!' are replaced with a random selection
-from the appropriate list.  PREFIX is the mode name used to prefix symbols."
+from the appropriate list."
   (cond ((null a) a)
         ((= (aref (car a) 0) ?*)
-         (horoscope--getlist (substring (car a) 1) (cdr a) prefix))
+         (horoscope--getlist (substring (car a) 1) (cdr a)))
         ((= (aref (car a) 0) ?!)
          (capitalize
-          (horoscope--getlist (substring (car a) 1) (cdr a) prefix)))
+          (horoscope--getlist (substring (car a) 1) (cdr a))))
         (t
          (concat (car a)
                  (if (cdr a) " " "")
-                 (horoscope--iterate-list (cdr a) prefix)))))
+                 (horoscope--iterate-list (cdr a))))))
 
 (provide 'horoscope)
 
