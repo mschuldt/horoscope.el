@@ -355,30 +355,18 @@ insert the resulting horoscope into the current buffer."
 STRING is the horoscope
 TEMP-BUFFER-NAME name of buffer
 INSERTP when nil use JBW display hacks"
-  (let ((temp-buffer-show-function temp-buffer-show-function)
-        (temp-buffer-show-hook
+  (let ((temp-buffer-show-hook
          (function (lambda ()
                      (fill-paragraph nil)))))
-
-    (cond (insertp
-           (save-restriction
-             (narrow-to-region (point) (point))
-             (insert string)
-             (fill-paragraph nil)))
-
-          (t
-           ;; Play nice with JBW's winning temp-buffer window height
-           ;; minimization hacks
-           (and (eq temp-buffer-show-function 'show-temp-buffer)
-                (setq temp-buffer-show-function
-                      (function (lambda (buf)
-                                  (with-current-buffer buf
-                                    (fill-paragraph nil))
-                                  (with-no-warnings (show-temp-buffer buf))))))
-           (with-output-to-temp-buffer temp-buffer-name
-             (princ string))
-           (with-current-buffer temp-buffer-name
-             (local-set-key (kbd "g") 'horoscope))))))
+    (if insertp
+        (save-restriction
+          (narrow-to-region (point) (point))
+          (insert string)
+          (fill-paragraph nil))
+      (with-output-to-temp-buffer temp-buffer-name
+	(princ string))
+      (with-current-buffer temp-buffer-name
+	(local-set-key (kbd "g") 'horoscope)))))
 
 (defun horoscope--random-member (a)
   "Return a random member of list A."
