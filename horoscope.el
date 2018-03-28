@@ -8,8 +8,6 @@
 ;; Package-Requires: ((emacs "24"))
 ;; URL: https://github.com/mschuldt/horoscope.el
 
-;; $Id: horoscope.el,v 1.2 1998/12/11 20:12:16 friedman Exp $
-
 ;; Bozoup(P) 1995 The Bozo(tic) Softwar(e) Founda(t)ion, Inc.
 ;; See the BOZO Antipasto for further information.
 ;; If this is useful to you, may you forever be blessed by the Holy Lord
