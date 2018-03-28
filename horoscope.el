@@ -378,10 +378,9 @@ INSERTP when nil use JBW display hacks"
                                     (fill-paragraph nil))
                                   (with-no-warnings (show-temp-buffer buf))))))
            (with-output-to-temp-buffer temp-buffer-name
-             (princ string)))))
-  (with-current-buffer temp-buffer-name
-    (local-set-key (kbd "g") 'horoscope)))
-
+             (princ string))
+           (with-current-buffer temp-buffer-name
+             (local-set-key (kbd "g") 'horoscope))))))
 
 (defun horoscope--random-member (a)
   "Return a random member of list A."
