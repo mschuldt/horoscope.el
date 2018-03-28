@@ -376,7 +376,12 @@ INSERTP when nil use JBW display hacks"
 
 (defun horoscope--getlist (listname restoflist)
   "Process entries from list LISTNAME and from RESTOFLIST.
-Handle periods and commas at the end of LISTNAME as needed."
+Handle periods and commas at the end of LISTNAME as needed.
+LISTNAME, without punctuation, corresponds to an unprefixed
+horoscope-- list constant, a member from that list is selected
+and is processed with `horoscope--iterate-list', it is then
+combined the punctuation and with RESTOFLIST which is
+processed in the same way."
   (let* ((lastchar (aref listname (1- (length listname))))
          (punct-char-p (memq lastchar '(?. ?,)))
          (period-p (= lastchar ?.))
