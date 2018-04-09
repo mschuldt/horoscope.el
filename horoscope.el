@@ -419,6 +419,21 @@ from the appropriate list."
                  (if (cdr a) " " "")
                  (horoscope--iterate-list (cdr a))))))
 
+;;;###autoload
+(defun horoscope-psychoanalyze ()
+  "The astrologist goes to the analyst."
+  (interactive)
+  (require 'doctor)
+  (doctor)
+  (message "")
+  (switch-to-buffer "*doctor*")
+  (sit-for 0)
+  (while (not (input-pending-p))
+    (horoscope t)
+    (insert "\n")
+    (sit-for 0.2)
+    (doctor-ret-or-read 1)))
+
 (provide 'horoscope)
 
 ;;; horoscope.el ends here
