@@ -1,4 +1,5 @@
 Generate horoscopes.
+Available as package 'horoscope' from Melpa.
 
     M-x horoscope
 
